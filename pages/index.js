@@ -65,7 +65,7 @@ export default function Home({data}) {
 }
 
 export async function getServerSideProps(ctx) {
-  const response = await fetch("http://localhost:3000/api/members");
+  const response = await fetch("/api/members");
   const data = await response.json();
   return {
     props: {

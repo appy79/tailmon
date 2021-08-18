@@ -1,31 +1,44 @@
 import React from "react";
 import { useState, useRef } from "react";
+import ProgressBar from "/components/ProgressBar";
   
 const UiFileInputButton = (props) => {
   const [nam, setNam] = useState("");
   const [fourD, setFourD] = useState("");
   const [designation, setDesignation] = useState("");
-  const [fname, setFname] = useState("")
   const [file, setFile] = useState(null);
+  const [imgurl, setImgurl] = useState("");
+  const [error, setError] = useState(null)
   const ref = useRef();
+
+  const types = ['image/png', 'image/jpeg', 'image/jpg']
   
   const reset = () => {
     ref.current.value = "";
   }
 
+  const upload = (e) => {
+    setError(null)
+    let selected = e.target.files[0];
+    if (selected && types.includes(selected.type)){
+      setFile(selected);
+    }
+    else{
+      setError("Please select a png/jpg/jpeg file");
+      setFile(null);
+    }
+  }
+
   const submit = (e) =>{
     e.preventDefault()
-    if (!nam || !fourD || !designation || !img) {
+    if (!nam || !fourD || !designation || !file) {
       alert("No field can be left blank");
-    } else {
-      const formData = new FormData();
-      formData.append(e.target.value, file);
-      props.onChange(formData, nam, fourD, designation);
+    } else{
+      props.onChange(nam, fourD, designation, imgurl);
       setNam("");
       setDesignation("");
       setFourD("");
-      setFname("");
-      setFile(null);
+      setImgurl("");
     }
   }
   return (
@@ -49,7 +62,6 @@ const UiFileInputButton = (props) => {
               value={nam}
               onChange={(e) => {
                 setNam(e.target.value);
-                setFname(Date.now());
               }}
             />
           </div>
@@ -90,9 +102,7 @@ const UiFileInputButton = (props) => {
               id="designation"
               type="text"
               value={designation}
-              onChange={(e) => {
-                setDesignation(e.target.value);
-              }}
+              onChange={(e) => setDesignation(e.target.value)}
             />
           </div>
         </div>
@@ -111,10 +121,12 @@ const UiFileInputButton = (props) => {
               id="img"
               type="file"
               ref={ref}
-              onChange={(e)=>{
-                setFile(e.target.files[0]);
-              }}
+              onChange={upload}
             />
+            <div className="">
+              {error && <div className = "error">{error}</div>}
+              {file && <ProgressBar file={file} setImgurl={setImgurl} />}
+            </div>
           </div>
         </div>
         <div className="md:flex md:items-center">

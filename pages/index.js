@@ -1,13 +1,23 @@
-import axios from 'axios';
 import UiFileInputButton from "/components/UiFileInputButton"
 import Members from '../components/Members';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { projectStorage } from "/firebase/config";
+
 
 export default function Home({data}) {
 
   const [members, setMembers] = useState(data.data);
+  const [person, setPerson] = useState(null);
+
+  useEffect(() => {
+    if(person){
+      const storageRef = projectStorage.refFromURL(person.img);
+      storageRef.delete();
+    }
+  }, [person])
 
   const onDelete = async (person) => {
+    setPerson(person);
     const response = await fetch(
       `/api/members/${person._id}`,
       {
@@ -20,27 +30,19 @@ export default function Home({data}) {
         return e !== person;
       })
     );
+    setPerson(null);
   };
   
-  const onChange = async (formData, nam, fourD, designation) => {
-    const config = {
-      method: "POST",
-      headers: { 'content-type': 'multipart/form-data' },
-      onUploadProgress: (event) => {
-        console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
-      },
-    };
-
-    var response = await axios.post('/api/members/pics', formData, config);
+  const onChange = async (nam, fourD, designation, imgurl) => {
 
     var newPerson = {
       "nam":nam,
       "fourD": fourD,
       "designation": designation,
-      "img": response.data.fname
+      "img": imgurl
     }
 
-    response = await fetch("/api/members", {
+    const response = await fetch("/api/members", {
       method: "POST",
       body: JSON.stringify(newPerson),
       headers: {

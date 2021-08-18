@@ -2,7 +2,6 @@ import { ObjectId } from "mongodb";
 import { connectToDatabase } from "../../../lib/mongodb";
 
 
-
 export default async (req, res) => {
 
   const {db} = await connectToDatabase();
@@ -52,10 +51,6 @@ export default async (req, res) => {
             .status(400)
             .json({ success: false, data: "member not found" });
         }
-        const fs = require('fs')
-        fs.unlink(`./public/uploads/members/pics/${member.img}`, function(err) {
-          if(err) return console.log(err);
-        });
         const deleteMember = await db.collection("members").deleteOne({ _id: ObjectId(id) });
         res.status(200).json({ success: true, data: member });
       } catch (error) {

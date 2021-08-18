@@ -9,7 +9,7 @@ export default function Home({data}) {
 
   const onDelete = async (person) => {
     const response = await fetch(
-      `http://localhost:3000/api/members/${person._id}`,
+      `/api/members/${person._id}`,
       {
         method: "DELETE",
       }
@@ -31,7 +31,7 @@ export default function Home({data}) {
       },
     };
 
-    var response = await axios.post('http://localhost:3000/api/members/pics', formData, config);
+    var response = await axios.post('/api/members/pics', formData, config);
 
     var newPerson = {
       "nam":nam,
@@ -40,7 +40,7 @@ export default function Home({data}) {
       "img": response.data.fname
     }
 
-    response = await fetch("http://localhost:3000/api/members", {
+    response = await fetch("/api/members", {
       method: "POST",
       body: JSON.stringify(newPerson),
       headers: {

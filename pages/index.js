@@ -55,6 +55,7 @@ export default function Home({data}) {
 
   return (
     <>
+    <p className="text-3xl text-center">PGION</p>
     <UiFileInputButton
       label="Upload Single File"
       uploadFileName="theFiles"

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import useStorage from 'hooks/useStorage';
 
 
-const ProgressBar = ({file, setImgurl}) => {
+const ProgressBar = ({file, setImgurl, setFile}) => {
 
     const period = file.name.lastIndexOf('.')
     const initial = file.name.substring(0, period);
@@ -16,8 +16,9 @@ const ProgressBar = ({file, setImgurl}) => {
     useEffect(() => {
         if(url){
             setImgurl(url);
+            setFile(null);
         }
-    }, [url, setImgurl])
+    }, [url, setImgurl, setFile])
 
     return (
         <>

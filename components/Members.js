@@ -2,7 +2,7 @@ import Person from "./Person";
 
 function Members(props) {
   return (
-    <div className="grid lg:grid-cols-2 gap-4 xl:grid-cols-3 justify-center">
+    <div className="grid lg:grid-cols-4 xl:grid-cols-5 justify-center">
       {props.members.length === 0
         ? "No members to Display"
         : props.members.map((member) => {

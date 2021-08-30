@@ -1,21 +1,16 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import ProgressBar from "/components/ProgressBar";
   
-const UiFileInputButton = (props) => {
+const AdminMembers = (props) => {
   const [nam, setNam] = useState("");
   const [fourD, setFourD] = useState("");
   const [designation, setDesignation] = useState("");
   const [file, setFile] = useState(null);
   const [imgurl, setImgurl] = useState("");
   const [error, setError] = useState(null)
-  const ref = useRef();
 
   const types = ['image/png', 'image/jpeg', 'image/jpg']
-  
-  const reset = () => {
-    ref.current.value = "";
-  }
 
   const upload = (e) => {
     setError(null)
@@ -31,7 +26,7 @@ const UiFileInputButton = (props) => {
 
   const submit = (e) =>{
     e.preventDefault()
-    if (!nam || !fourD || !designation || !file) {
+    if (!nam || !fourD || !designation || !imgurl) {
       alert("No field can be left blank");
     } else{
       props.onChange(nam, fourD, designation, imgurl);
@@ -120,12 +115,11 @@ const UiFileInputButton = (props) => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="img"
               type="file"
-              ref={ref}
               onChange={upload}
             />
             <div className="">
               {error && <div className = "error">{error}</div>}
-              {file && <ProgressBar file={file} setImgurl={setImgurl} />}
+              <span>{file && <ProgressBar file={file} setFile={setFile} setImgurl={setImgurl} />} {imgurl && <p> Upload Completed</p>}</span>
             </div>
           </div>
         </div>
@@ -135,7 +129,6 @@ const UiFileInputButton = (props) => {
             <input
               className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
               type="submit"
-              onClick={reset}
               value="Add"
             />
           </div>
@@ -145,4 +138,4 @@ const UiFileInputButton = (props) => {
   )
 };
 
-export default UiFileInputButton;
+export default AdminMembers;

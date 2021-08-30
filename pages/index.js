@@ -1,7 +1,7 @@
-import UiFileInputButton from "/components/UiFileInputButton"
 import Members from '../components/Members';
 import { useState, useEffect } from 'react';
 import { projectStorage } from "/firebase/config";
+import AdminMembers from "components/AdminMembers";
 
 
 export default function Home({data}) {
@@ -56,7 +56,7 @@ export default function Home({data}) {
   return (
     <>
     <p className="text-3xl text-center">PGION Members</p>
-    <UiFileInputButton
+    <AdminMembers
       label="Upload Single File"
       uploadFileName="theFiles"
       onChange={onChange}

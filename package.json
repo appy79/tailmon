@@ -6,10 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "firebase": "^8.9.1",
-    "firebase-admin": "^9.11.0",
-    "formidable": "^1.2.2",
     "mongodb": "^4.1.0",
     "next": "latest",
     "react": "^17.0.2",

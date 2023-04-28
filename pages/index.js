@@ -2,6 +2,7 @@ import Members from '../components/Members';
 import { useState, useEffect } from 'react';
 import { projectStorage } from "/firebase/config";
 import AdminMembers from "components/AdminMembers";
+import Banner from 'components/Banner';
 
 
 export default function Home({data}) {
@@ -55,6 +56,7 @@ export default function Home({data}) {
 
   return (
     <>
+    <Banner/>
     <p className="text-3xl text-center">PGION Members</p>
     <AdminMembers
       label="Upload Single File"

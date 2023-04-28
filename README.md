@@ -10,10 +10,11 @@
 ## Emulate:
  Run
 ```bash
-npn install
+npm install
 ```
 
 Create and .env.local file and add the values to following parameters:
+```
 MONGODB_URI=
 MONGODB_DB=
 URL="http://localhost:3000"
@@ -26,6 +27,7 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
 NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+```
 
 ## See it live at:
 

@@ -8,16 +8,16 @@
 4) Firebase Storage
 
 ## Emulate:
- Run
+1. Clone to your device using git clone.
+2. Install packages with
 ```bash
 npm install
 ```
-
-Create and .env.local file and add the values to following parameters:
+3. Create a file named .env.local and add the values to following parameters:
 ```
 MONGODB_URI=
 MONGODB_DB=
-URL="http://localhost:3000"
+URL=
 
 #firebase
 NEXT_PUBLIC_FIREBASE_API_KEY=
@@ -28,8 +28,9 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
 NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
 ```
-
-## See it live at:
-
-Deployed on the cloud with [Vercel](https://tailmon.vercel.app)
+4. Run using 
+```bash
+npm run dev
+```
+## See it live at: [Vercel](https://tailmon.vercel.app)
 
